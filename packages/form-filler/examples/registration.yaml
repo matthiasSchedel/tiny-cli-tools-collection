@@ -1,0 +1,10 @@
+steps:
+  - url: https://example.com/register
+    fields:
+      - selector: "#email"
+        value: "test@example.com"
+    submit: "button.next"
+  - fields:
+      - selector: "#password"
+        value: "secret123"
+    submit: "button.finish"

@@ -1,0 +1,34 @@
+name: Feature request
+description: Propose an enhancement for one of the CLI packages
+title: "[Feature] <package>: <short summary>"
+labels: ["enhancement"]
+body:
+  - type: input
+    id: package
+    attributes:
+      label: Package
+      placeholder: json-patcher
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem are you trying to solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should the CLI/API do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any workarounds or alternatives you've considered

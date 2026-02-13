@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "json-patcher"
+version = "0.1.0"
+description = "Smart JSON patching and merging utilities."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "CLI Tools Contributors" }]
+dependencies = [
+  "click>=8.1.7",
+  "jsonpatch>=1.33",
+  "jsonschema>=4.22.0",
+  "jsonpath-ng>=1.6.1",
+  "pyyaml>=6.0.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+json-patcher = "json_patcher.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/json_patcher"]

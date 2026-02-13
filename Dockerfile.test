@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+WORKDIR /workspace
+
+COPY . .
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends pandoc ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV USE_SYSTEM_PYTHON=1
+
+CMD ["./scripts/run_all_tests.sh"]

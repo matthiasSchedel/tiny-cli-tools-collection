@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "page-differ"
+version = "0.1.0"
+description = "Detect semantic changes between web page versions."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "CLI Tools Contributors" }]
+dependencies = [
+  "click>=8.1.7",
+  "beautifulsoup4>=4.12.3",
+  "requests>=2.32.3",
+  "pillow>=10.3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+page-differ = "page_differ.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/page_differ"]

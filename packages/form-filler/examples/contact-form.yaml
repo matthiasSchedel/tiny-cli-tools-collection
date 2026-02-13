@@ -1,0 +1,12 @@
+url: https://example.com/contact
+wait_for: "form"
+fields:
+  - selector: "#name"
+    value: "John Doe"
+  - selector: "#email"
+    value: "john@example.com"
+  - selector: "#message"
+    value: "Hello from automation"
+    type: textarea
+submit_button: "button[type=submit]"
+wait_after_submit: 1000

@@ -1,0 +1,24 @@
+const rows = document.getElementById("rows");
+const details = document.getElementById("details");
+const refresh = document.getElementById("refresh");
+
+async function fetchRequests() {
+  const response = await fetch("/_relay/requests");
+  const data = await response.json();
+  rows.innerHTML = "";
+  data.forEach((item) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${item.id}</td><td>${item.method}</td><td>${item.path}</td><td>${item.timestamp}</td>`;
+    tr.addEventListener("click", () => {
+      details.textContent = JSON.stringify(item, null, 2);
+    });
+    rows.appendChild(tr);
+  });
+}
+
+refresh.addEventListener("click", fetchRequests);
+fetchRequests();
+
+const protocol = location.protocol === "https:" ? "wss" : "ws";
+const ws = new WebSocket(`${protocol}://${location.host}/_relay/ws`);
+ws.addEventListener("message", fetchRequests);

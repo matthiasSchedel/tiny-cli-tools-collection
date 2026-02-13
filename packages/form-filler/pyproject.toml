@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "form-filler"
+version = "0.1.0"
+description = "Fill web forms declaratively from JSON/YAML."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "CLI Tools Contributors" }]
+dependencies = [
+  "click>=8.1.7",
+  "pyyaml>=6.0.1",
+  "playwright>=1.45.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+form-filler = "form_filler.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/form_filler"]

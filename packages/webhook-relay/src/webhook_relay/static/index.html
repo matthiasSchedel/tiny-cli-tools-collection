@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>webhook-relay</title>
+    <script src="/_relay/static/app.js" defer></script>
+    <style>
+      body { font-family: ui-sans-serif, system-ui; margin: 2rem; background: #f7f8fb; color: #222; }
+      .row { display: flex; gap: 1rem; align-items: center; }
+      table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; }
+      th, td { border-bottom: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+      code { background: #eee; padding: 0.1rem 0.3rem; border-radius: 4px; }
+      #details { margin-top: 1rem; white-space: pre-wrap; background: white; padding: 1rem; }
+    </style>
+  </head>
+  <body>
+    <h1>webhook-relay</h1>
+    <p>Live request inspector. API: <code>/_relay/requests</code></p>
+    <div class="row">
+      <button id="refresh">Refresh</button>
+    </div>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Method</th><th>Path</th><th>Timestamp</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div id="details">Select a request to inspect details.</div>
+  </body>
+</html>
