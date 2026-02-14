@@ -1,0 +1,11 @@
+<h1>doc-renderer</h1>
+<p>Convert documents between Markdown, HTML, PDF, DOCX, and ODT via Pandoc.</p>
+<h2>Install</h2>
+<pre><code class="language-bash">python3 -m pip install doc-renderer
+brew install pandoc   # or your platform equivalent
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash">doc-renderer --to pdf README.md
+doc-renderer --to html --template custom.html --css style.css docs.md
+doc-renderer --batch &quot;*.md&quot; --to pdf
+</code></pre>

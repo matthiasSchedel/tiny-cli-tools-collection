@@ -1,0 +1,10 @@
+<h1>schema-guesser</h1>
+<p>Infer JSON Schema Draft 7 from example JSON data.</p>
+<h2>Install</h2>
+<pre><code class="language-bash">python3 -m pip install schema-guesser
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash">schema-guesser data.json
+schema-guesser --confidence 0.9 sample1.json sample2.json
+curl https://api.example.com/users | schema-guesser --stdin --format yaml
+</code></pre>

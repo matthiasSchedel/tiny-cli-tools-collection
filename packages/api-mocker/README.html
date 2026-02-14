@@ -1,0 +1,16 @@
+<h1>api-mocker</h1>
+<p>Run local mock APIs from OpenAPI 3 specs.</p>
+<h2>Install</h2>
+<pre><code class="language-bash">python3 -m pip install api-mocker
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash">api-mocker openapi.yaml
+api-mocker --port 3000 --log-file requests.jsonl --replay spec.yaml
+</code></pre>
+<h2>Features</h2>
+<ul>
+<li>dynamic route creation from OpenAPI paths</li>
+<li>fake response generation from schemas</li>
+<li>optional request validation</li>
+<li>replay endpoints for recorded traffic</li>
+</ul>

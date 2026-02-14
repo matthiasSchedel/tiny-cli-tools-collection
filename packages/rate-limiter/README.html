@@ -1,0 +1,9 @@
+<h1>rate-limiter</h1>
+<p>Universal CLI wrapper with token-bucket rate limiting.</p>
+<h2>Install</h2>
+<pre><code class="language-bash">python3 -m pip install rate-limiter
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash">rate-limiter --rpm 60 -- curl https://api.example.com
+rate-limiter --rpm 100 --state-file ~/.cache/limits.json --key github -- gh api /user
+</code></pre>

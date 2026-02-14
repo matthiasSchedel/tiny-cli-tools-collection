@@ -1,0 +1,10 @@
+<h1>webhook-relay</h1>
+<p>Receive webhooks locally, inspect payloads, and replay captured requests.</p>
+<h2>Install</h2>
+<pre><code class="language-bash">python3 -m pip install webhook-relay
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash">webhook-relay
+webhook-relay --forward http://localhost:3000 --storage webhooks.db
+webhook-relay --validate-signature github --secret your-secret
+</code></pre>

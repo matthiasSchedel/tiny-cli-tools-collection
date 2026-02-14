@@ -1,0 +1,11 @@
+<h1>json-patcher</h1>
+<p>Patch, merge, diff, and query JSON documents from the command line.</p>
+<h2>Install</h2>
+<pre><code class="language-bash">python3 -m pip install json-patcher
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash">json-patcher patch data.json --patch ops.json
+json-patcher merge base.json override.json --strategy smart
+json-patcher diff old.json new.json
+json-patcher query data.json &quot;$.users[*].email&quot;
+</code></pre>

@@ -1,0 +1,18 @@
+<h1>text-chunker</h1>
+<p>Chunk text for LLM pipelines with deterministic output and metadata.</p>
+<h2>Install</h2>
+<pre><code class="language-bash">python3 -m pip install text-chunker
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash">text-chunker --max-tokens 500 document.txt
+cat document.txt | text-chunker --strategy semantic --overlap 100 --format jsonl
+</code></pre>
+<h2>Strategies</h2>
+<ul>
+<li><code>character</code>: fixed-width chunking</li>
+<li><code>token</code>: token-budget chunking</li>
+<li><code>sentence</code>: sentence-aware chunking</li>
+<li><code>paragraph</code>: paragraph-aware chunking</li>
+<li><code>semantic</code>: markdown headings + paragraphs</li>
+</ul>
+<p>See <code>docs/index.md</code> for more examples.</p>

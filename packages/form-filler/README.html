@@ -1,0 +1,10 @@
+<h1>form-filler</h1>
+<p>Fill and optionally submit web forms from JSON/YAML definitions.</p>
+<h2>Install</h2>
+<pre><code class="language-bash">python3 -m pip install form-filler
+playwright install chromium
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash">form-filler https://example.com/contact examples/contact-form.yaml
+form-filler --no-submit --screenshot https://example.com/form data.json
+</code></pre>
