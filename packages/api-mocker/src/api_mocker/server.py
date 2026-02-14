@@ -107,6 +107,19 @@ def create_app(
     if not paths:
         raise ValueError("No paths found in OpenAPI spec.")
 
+    root_path_methods = paths.get("/", {})
+    has_root_get = any(method.lower() == "get" for method in root_path_methods.keys())
+    if not has_root_get:
+
+        @app.get("/", include_in_schema=False)
+        async def root():
+            return {
+                "service": "api-mocker",
+                "docs": "/docs",
+                "redoc": "/redoc",
+                "mock_paths": sorted(paths.keys()),
+            }
+
     for raw_path, methods in paths.items():
         for method, operation in methods.items():
             if method.lower() not in {"get", "post", "put", "patch", "delete", "options", "head"}:

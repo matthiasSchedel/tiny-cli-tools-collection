@@ -1,6 +1,7 @@
 const rows = document.getElementById("rows");
 const details = document.getElementById("details");
 const refresh = document.getElementById("refresh");
+let pollTimer = null;
 
 async function fetchRequests() {
   const response = await fetch("/_relay/requests");
@@ -19,6 +20,35 @@ async function fetchRequests() {
 refresh.addEventListener("click", fetchRequests);
 fetchRequests();
 
-const protocol = location.protocol === "https:" ? "wss" : "ws";
-const ws = new WebSocket(`${protocol}://${location.host}/_relay/ws`);
-ws.addEventListener("message", fetchRequests);
+function startPolling() {
+  if (pollTimer !== null) return;
+  pollTimer = window.setInterval(fetchRequests, 2000);
+}
+
+function connectWebSocket() {
+  const protocol = location.protocol === "https:" ? "wss" : "ws";
+  const ws = new WebSocket(`${protocol}://${location.host}/_relay/ws`);
+  ws.addEventListener("message", fetchRequests);
+  ws.addEventListener("error", startPolling);
+  ws.addEventListener("close", startPolling);
+}
+
+async function initRealtime() {
+  try {
+    const response = await fetch("/_relay/capabilities");
+    if (!response.ok) {
+      startPolling();
+      return;
+    }
+    const capabilities = await response.json();
+    if (capabilities.websocket) {
+      connectWebSocket();
+      return;
+    }
+  } catch {
+    // Fall back to polling when capability probing fails.
+  }
+  startPolling();
+}
+
+initRealtime();

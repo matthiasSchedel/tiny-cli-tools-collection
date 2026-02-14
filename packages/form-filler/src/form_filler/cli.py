@@ -6,7 +6,7 @@ from pathlib import Path
 import click
 
 from .filler import fill_form
-from .utils import load_data_file
+from .utils import load_data_file, resolve_config_urls, resolve_input_url
 from .validators import validate_config
 
 
@@ -38,11 +38,16 @@ def main(
     """Fill forms from declarative JSON/YAML."""
     try:
         data = load_data_file(data_file, explicit_format=data_format)
+        data = resolve_config_urls(data, base_dir=data_file.parent)
         errors = validate_config(data)
         if errors:
             raise click.ClickException("; ".join(errors))
+        raw_url = data.get("url")
+        effective_url = resolve_input_url(
+            raw_url if isinstance(raw_url, str) else url, base_dir=data_file.parent
+        )
         result = fill_form(
-            url=data.get("url", url),
+            url=effective_url,
             data=data,
             browser_name=browser_name,
             wait_for=wait_for,

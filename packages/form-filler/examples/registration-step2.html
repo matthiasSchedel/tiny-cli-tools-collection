@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registration Step 2</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 2rem; }
+      form { display: grid; gap: 0.75rem; max-width: 360px; }
+      input, button { font: inherit; padding: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Registration: Step 2</h1>
+    <form id="registration-step-2">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" />
+      <button type="submit" class="finish">Finish</button>
+    </form>
+    <script>
+      document.getElementById("registration-step-2").addEventListener("submit", (event) => {
+        event.preventDefault();
+      });
+    </script>
+  </body>
+</html>

@@ -35,6 +35,21 @@ class ConnectionHub:
                 self.disconnect(conn)
 
 
+def _websocket_supported() -> bool:
+    try:
+        import websockets  # noqa: F401
+
+        return True
+    except Exception:
+        pass
+    try:
+        import wsproto  # noqa: F401
+
+        return True
+    except Exception:
+        return False
+
+
 def create_app(
     *,
     forward_url: str | None,
@@ -42,6 +57,7 @@ def create_app(
     signature_provider: str | None,
     secret: str | None,
     capacity: int,
+    websocket_enabled: bool | None = None,
 ) -> FastAPI:
     app = FastAPI(title="webhook-relay")
     app.add_middleware(
@@ -53,6 +69,7 @@ def create_app(
     )
     storage = RelayStorage(storage_path=storage_path, capacity=capacity)
     hub = ConnectionHub()
+    ws_enabled = _websocket_supported() if websocket_enabled is None else websocket_enabled
 
     static = static_dir()
     app.mount("/_relay/static", StaticFiles(directory=static), name="relay-static")
@@ -61,14 +78,20 @@ def create_app(
     async def index():
         return FileResponse(static / "index.html")
 
-    @app.websocket("/_relay/ws")
-    async def ws(websocket: WebSocket):
-        await hub.connect(websocket)
-        try:
-            while True:
-                await websocket.receive_text()
-        except WebSocketDisconnect:
-            hub.disconnect(websocket)
+    if ws_enabled:
+
+        @app.websocket("/_relay/ws")
+        async def ws(websocket: WebSocket):
+            await hub.connect(websocket)
+            try:
+                while True:
+                    await websocket.receive_text()
+            except WebSocketDisconnect:
+                hub.disconnect(websocket)
+
+    @app.get("/_relay/capabilities")
+    async def capabilities():
+        return {"websocket": ws_enabled}
 
     @app.get("/_relay/requests")
     async def list_requests():

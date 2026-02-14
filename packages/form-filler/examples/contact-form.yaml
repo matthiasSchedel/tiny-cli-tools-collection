@@ -1,4 +1,4 @@
-url: https://example.com/contact
+url: ./contact-form.html
 wait_for: "form"
 fields:
   - selector: "#name"

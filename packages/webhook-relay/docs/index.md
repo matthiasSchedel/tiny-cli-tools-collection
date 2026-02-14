@@ -14,3 +14,4 @@ webhook-relay --storage webhooks.db
 webhook-relay --forward http://localhost:3000
 ```
 
+If WebSocket dependencies are unavailable in your Uvicorn install, the UI will automatically fall back to polling.

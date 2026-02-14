@@ -15,6 +15,8 @@ api-mocker openapi.yaml
 api-mocker --port 3000 --log-file requests.jsonl --replay spec.yaml
 ```
 
+When your OpenAPI spec does not define `GET /`, visiting `/` returns a small service index with docs links and loaded mock paths.
+
 ## Features
 
 - dynamic route creation from OpenAPI paths

@@ -15,3 +15,10 @@ playwright install chromium
 form-filler https://example.com/contact examples/contact-form.yaml
 form-filler --no-submit --screenshot https://example.com/form data.json
 ```
+
+Run bundled local examples:
+
+```bash
+form-filler --no-submit "file://$PWD/packages/form-filler/examples/contact-form.html" packages/form-filler/examples/contact-form.yaml
+form-filler --no-submit "file://$PWD/packages/form-filler/examples/registration-step1.html" packages/form-filler/examples/registration.yaml
+```

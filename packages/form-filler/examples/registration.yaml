@@ -1,10 +1,12 @@
+url: ./registration-step1.html
 steps:
-  - url: https://example.com/register
+  - url: ./registration-step1.html
+    wait_for: "form"
     fields:
       - selector: "#email"
         value: "test@example.com"
-    submit: "button.next"
-  - fields:
+  - url: ./registration-step2.html
+    wait_for: "form"
+    fields:
       - selector: "#password"
         value: "secret123"
-    submit: "button.finish"
